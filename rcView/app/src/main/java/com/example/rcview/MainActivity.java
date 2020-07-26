@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<ArrayList<String>> getTitles=new ArrayList<>();
         getTitles=getJson();
 
-        my_rvAdapter adapter =new my_rvAdapter(getTitles);
+        my_rvAdapter adapter =new my_rvAdapter(this,getTitles);
         rv.setAdapter(adapter);
     }
     public ArrayList<ArrayList<String>> getJson() {
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
             ArrayList<String> level=new ArrayList<>();
             ArrayList<String> info=new ArrayList<>();
             ArrayList<String> imageName=new ArrayList<>();
+            ArrayList<String> urls=new ArrayList<>();
             ArrayList<ArrayList<String>> together =new ArrayList<>();
 
             InputStream is = getAssets().open("data.json");
@@ -55,11 +56,13 @@ public class MainActivity extends AppCompatActivity {
                 level.add(jsonobject.getString("level"));
                 info.add(jsonobject.getString("info"));
                 imageName.add(jsonobject.getString("cover"));
+                urls.add(jsonobject.getString("url"));
             }
             together.add(title);
             together.add(level);
             together.add(info);
             together.add(imageName);
+            together.add(urls);
 
             return together;
         }
